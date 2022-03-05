@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 
 from pathlib import Path
 import os
+import posixpath
 from django.contrib.messages import constants as messages
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -33,6 +34,8 @@ ALLOWED_HOSTS = ['127.0.0.1','xblog1.herokuapp.com']
 # Application definition
 
 INSTALLED_APPS = [
+    'Blog',
+    'Home',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -40,8 +43,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.humanize',
-    'Blog',
-    'Home',
 ]
 
 MIDDLEWARE = [
@@ -124,12 +125,11 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 STATICFILES_STORAGE =  'django.contrib.staticfiles.storage.StaticFilesStorage' 
-                                                             
+
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR,  "static"),
 ]
-PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
-STATIC_ROOT = os.path.join(PROJECT_DIR, 'static')
+STATIC_ROOT = posixpath.join(*(BASE_DIR.split(os.path.sep) + ['static']))
 
 
 MEDIA_URL = '/media/'
