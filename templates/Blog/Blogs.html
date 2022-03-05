@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block blogsactive %} active {% endblock %}
+
+{% block body %}
+
+
+<div class="container my-3">
+  {% for post in posts %}
+  <div class="row mb-2">
+    <div class="col-md-12">
+      <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+        <div class="col p-4 d-flex flex-column position-static">
+          <strong class="d-inline-block mb-2 text-primary">Posted by {{ post.author }}</strong>
+          <h3 class="mb-0">{{post.title}}</h3>
+          <div class="mb-1 text-muted">{{ post.pub_date}}</div>
+          <p class="card-text mb-auto">{{ post.content|safe }}</p>
+          <div class="my-2">
+            <a href="/Blog/{{post.slug}}" role="button" class="btn btn-primary">Continue reading</a>
+          </div>
+        </div>
+        <div class="col-auto d-none d-lg-block my-4 mx-2 ">
+          <img src="{{ media_url}}{{ post.image }}" class="bd-placeholder-img" width="400" height="250">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {% endfor %}
+</div>
+
+{% endblock body %}
