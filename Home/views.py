@@ -11,7 +11,7 @@ def home(request):
     context = {'posts' : posts,
     'media_url': settings.MEDIA_URL
     }
-    return render(request, "home/home.html", context)
+    return render(request, "Home/home.html", context)
 
 def contact(request):
     if request.method=="POST":
@@ -25,7 +25,7 @@ def contact(request):
             contact=Contact(name=name, email=email, phone=phone, content=content)
             contact.save()
             messages.success(request, "Your message has been successfully sent")
-    return render(request, "home/contact.html")
+    return render(request, "Home/contact.html")
 
 def search(request):
     query=request.GET['query']
@@ -39,7 +39,7 @@ def search(request):
     if allPosts.count()==0:
         messages.warning(request, "No search results found. Please refine your query.")
     params={'allPosts': allPosts, 'query': query, 'media_url': settings.MEDIA_URL}
-    return render(request, 'home/search.html', params)
+    return render(request, 'Home/search.html', params)
 
 def SignUp(request):
     if request.method=="POST":
@@ -102,5 +102,5 @@ def Logout(request):
 
 
 def about(request): 
-    return render(request, "home/about.html")
+    return render(request, "Home/about.html")
 
